@@ -1,10 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>New Purchase</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-$END$
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/home}">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/customer}">Customers</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" th:href="@{/purchase}">Purchases</a>
+    </li>
+
+</ul>
+
+<form method="post" th:action="@{/purchase/add}">
+
+    <label for="shopName">Shop</label>
+    <input type="text" id="shopName" placeholder="e.g. Tesco..." th:field="*{newPurchase.shopName}">
+
+    <label for="item">Item</label>
+    <input type="text" id="item" placeholder="e.g. Car" th:field="*{newPurchase.item}">
+
+    <label for="amount">Value</label>
+    <input type="text" id="amount" placeholder="e.g 12340" th:field="*{newPurchase.amount}">
+
+
+
+    <label for="buyer">Buyer</label>
+    <select id="buyer" th:field="*{newPurchase.buyer}">
+        <option value=""> Select Customer </option>
+        <option th:each="buyer : ${customers}" th:value="${buyer.id}" th:text="${buyer.name}"></option>
+    </select>
+
+
+    <button type="submit">Add</button>
+</form>
+
 </body>
 </html>

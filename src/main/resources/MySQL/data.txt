@@ -1,0 +1,37 @@
+CREATE DATABASE progmatic_modulzaro_spring;
+USE progmatic_modulzaro_spring;
+
+CREATE TABLE customer (
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(50),
+place_of_birth VARCHAR(25),
+date_of_birth DATE,
+email VARCHAR(50)
+);
+CREATE TABLE purchase(
+id INT PRIMARY KEY AUTO_INCREMENT,
+shop_name VARCHAR(50),
+item VARCHAR(50),
+amount INT,
+customer_id INT,
+FOREIGN KEY (customer_id) REFERENCES customer(id)
+);
+
+CREATE TABLE shop(
+id INT PRIMARY KEY AUTO_INCREMENT,
+shop_name VARCHAR(50)
+);
+
+INSERT INTO customer (name, place_of_birth, date_of_birth, email) VALUES
+('Aranka', 'Kecskemet', '1997-11-26', 'ari@mail.com'),
+('Jano', 'Ura', '1994-08-14', 'jan@mail.com'),
+('Karesz', 'Eger', '1993-12-11', 'kar@mail.com'),
+('Lali', 'Mateszalka', '1997-08-12', 'lal@mail.com'),
+('Julcsi', 'Tyukod', '1998-05-21', 'jul@mail.com');
+
+INSERT INTO purchase (shop_name, item, amount, customer_id) VALUES
+('MediaMarkt', 'TV', 135000, 5),
+('Kifli', 'groceries', 23400, 4),
+('DM', 'daiper', 16000, 3),
+('Wolt', 'McDonalds', 32000, 2),
+('Auchan', 'groceries', 65200, 1);
